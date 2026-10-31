@@ -17,10 +17,12 @@ pub struct GameCredentials {
     #[serde(default)]
     pub email: String,
     #[serde(default)]
+    pub username: String,
+    #[serde(default)]
     pub password: String,
     #[serde(default)]
     pub token: String,
-    #[serde(rename = "deviceUuid", default)]
+    #[serde(rename = "deviceId", alias = "deviceUuid", alias = "device_id", default)]
     pub device_uuid: String,
     #[serde(default)]
     pub origin: String,
@@ -28,22 +30,32 @@ pub struct GameCredentials {
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct GameSettings {
-    #[serde(rename = "huntTarget", default)]
+    #[serde(rename = "huntTarget", alias = "hunt_target", default)]
     pub hunt_target: String,
-    #[serde(rename = "autoHunt", default = "default_true")]
+    #[serde(rename = "autoHunt", alias = "auto_hunt", default = "default_true")]
     pub auto_hunt: bool,
-    #[serde(rename = "autoCatch", default = "default_true")]
+    #[serde(rename = "autoCatch", alias = "auto_catch", default = "default_true")]
     pub auto_catch: bool,
-    #[serde(rename = "autoSell", default = "default_true")]
+    #[serde(rename = "autoSell", alias = "auto_sell", default = "default_true")]
     pub auto_sell: bool,
-    #[serde(rename = "autoDaily", default = "default_true")]
+    #[serde(rename = "autoDaily", alias = "auto_daily", default = "default_true")]
     pub auto_daily: bool,
-    #[serde(rename = "switchWeakness", default = "default_true")]
+    #[serde(rename = "autoHeal", alias = "auto_heal", default = "default_true")]
+    pub auto_heal: bool,
+    #[serde(rename = "focusPokedex", alias = "focus_pokedex", default)]
+    pub focus_pokedex: bool,
+    #[serde(rename = "exploitWeakness", alias = "switchWeakness", alias = "exploit_weakness", default = "default_true")]
     pub switch_weakness: bool,
+    #[serde(rename = "preferredBall", alias = "preferred_ball", default)]
+    pub preferred_ball: String,
     #[serde(rename = "ballId", default = "default_ball")]
     pub ball_id: u32,
     #[serde(rename = "shinyBallId", default = "default_shiny_ball")]
     pub shiny_ball_id: u32,
+    #[serde(rename = "minHpPercent", alias = "min_hp_percent", default)]
+    pub min_hp_percent: u32,
+    #[serde(rename = "saveIntervalSec", alias = "save_interval_sec", default)]
+    pub save_interval_sec: u32,
 }
 
 fn default_true() -> bool {
